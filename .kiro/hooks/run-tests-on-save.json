@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run Targeted Tests on BLoC/UseCase Save",
+      "trigger": "PostFileSave",
+      "description": "Derives the mirrored test path from the saved BLoC or UseCase source file, runs it if it exists, and logs a message if not found.",
+      "matcher": "lib/features/.+/(presentation/bloc|domain/usecases)/.+\\.dart$",
+      "action": {
+        "type": "command",
+        "command": "TEST_PATH=$(echo \"$KIRO_FILE_PATH\" | sed 's|lib/features/|test/features/|' | sed 's|\\.dart$|_test.dart|'); if [ -f \"$TEST_PATH\" ]; then flutter test \"$TEST_PATH\" 2>&1; else echo \"[run-tests-on-save] No test file found at $TEST_PATH\"; fi"
+      }
+    }
+  ]
+}

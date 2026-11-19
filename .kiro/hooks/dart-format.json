@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Dart Format on Save",
+      "trigger": "PostFileSave",
+      "description": "Runs dart format on any saved .dart file and reports formatting violations without blocking the save.",
+      "matcher": "\\.dart$",
+      "action": {
+        "type": "command",
+        "command": "dart format --output=none --set-exit-if-changed \"$KIRO_FILE_PATH\" 2>&1 || echo \"[dart format] File needs formatting: $KIRO_FILE_PATH\""
+      }
+    }
+  ]
+}

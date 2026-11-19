@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Flutter Analyze on Save",
+      "trigger": "PostFileSave",
+      "description": "Runs flutter analyze on any saved .dart file and surfaces analysis errors and warnings with file path and line number.",
+      "matcher": "\\.dart$",
+      "action": {
+        "type": "command",
+        "command": "flutter analyze --no-fatal-warnings \"$KIRO_FILE_PATH\" 2>&1"
+      }
+    }
+  ]
+}
